@@ -1,0 +1,125 @@
+{
+  "name": "shade-cn-helper",
+  "displayName": "Shadcn Assistant",
+  "description": "A VS Code assistant for discovering, installing, and using shadcn/ui components.",
+  "version": "0.0.1",
+  "publisher": "tejas-shimpi",
+  "license": "SEE LICENSE IN LICENSE",
+  "engines": {
+    "vscode": "^1.134.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "shadcn",
+    "shadcn-ui",
+    "react",
+    "tailwind",
+    "ui",
+    "components"
+  ],
+  "pricing": "Free",
+  "activationEvents": [
+    "onView:shadcn-components"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "shade-cn-helper.helloWorld",
+        "title": "Hello World"
+      },
+      {
+        "command": "shade-cn-helper.detectProject",
+        "title": "Detect Shadcn Project"
+      },
+      {
+        "command": "shade-cn-helper.refreshComponents",
+        "title": "Refresh Shadcn Components",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "shade-cn-helper.installComponent",
+        "title": "Install Component"
+      },
+      {
+        "command": "shade-cn-helper.openComponent",
+        "title": "Open Component"
+      },
+      {
+        "command": "shade-cn-helper.componentDetails",
+        "title": "View Component Details"
+      },
+      {
+        "command": "shade-cn-helper.searchComponents",
+        "title": "Search Shadcn Components",
+        "icon": "$(search)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "shadcn-assistant",
+          "title": "Shadcn Assistant",
+          "icon": "resorces/shadcn.svg"
+        }
+      ]
+    },
+    "views": {
+      "shadcn-assistant": [
+        {
+          "id": "shadcn-components",
+          "name": "Components"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "shade-cn-helper.searchComponents",
+          "when": "view == shadcn-components",
+          "group": "navigation"
+        },
+        {
+          "command": "shade-cn-helper.refreshComponents",
+          "when": "view == shadcn-components",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "shade-cn-helper.componentDetails",
+          "when": "view == shadcn-components && (viewItem == component || viewItem == availableComponent)",
+          "group": "navigation"
+        },
+        {
+          "command": "shade-cn-helper.installComponent",
+          "when": "view == shadcn-components && viewItem == availableComponent",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "24.x",
+    "@types/vscode": "^1.134.0",
+    "@vscode/test-cli": "^0.0.15",
+    "@vscode/test-electron": "^3.0.0",
+    "@vscode/vsce": "^3.9.2",
+    "eslint": "^10.5.0"
+  },
+  "overrides": {
+    "diff": "^8.0.4",
+    "serialize-javascript": "^7.0.6"
+  },
+  "dependencies": {
+    "shadcn": "^4.21.0"
+  }
+}
